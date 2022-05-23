@@ -1,0 +1,1186 @@
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+#include <fstream>
+#include<string>
+using namespace std;
+    float L_weight = 0.0;
+	 float R_weight=0.0;
+	 float M_weight=0.0;
+	 float CEP_weight=0.0;
+     float F_weight=0.0;
+     float Total_weight=0.0;
+     
+     
+	 void display(){
+		
+	cout<<"Please enter 1 for Daily Lab Performance :\n";
+	cout<<"Please enter 2 for Lab reports :\n";
+	cout<<"Please enter 3 for Mid term  :\n";
+	cout<<"Please enter 4 CEA :\n";
+	cout<<"Please enter 5 for Final term :\n";
+	}
+void classcall()
+
+{   
+	cout<<"\n******************************\n";
+	cout<<"Press 1 for BEME II B :\n";
+    cout<<"Press 2 for MTS II-A :\n";
+    cout<<"Press 3 for BEEP II-A :\n";
+    cout<<"Press 4 for BEBME A :\n";
+   	cout<<"\n******************************\n";
+}
+
+    void inputweightage()
+   {
+
+    cout<<"Pkease enter the weightage :\n\n";
+    cout<<"Enter the lab weightage :\n";
+    cin>>L_weight;
+
+
+    cout<<"Enter the Daily report weightage :\n";
+    cin>>R_weight;
+    cout<<"Enter the mid term weightage :\n";
+    cin>>M_weight;
+    cout<<"Enter the CEP weightage :\n";
+    cin>>CEP_weight;
+    cout<<"Enter the final term weightage:\n";
+    cin>>F_weight;
+
+
+}
+char board[3][3]={{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+char turn ='X';
+int row,col;
+bool draw= false;
+void cafe(string detail) {
+  cout <<"1) Fresh Juice:   Rs 100\n2) Lays:\t  Rs 50\n3) Burger:        Rs 100\n4) Biryani:       Rs 150\n5) Chana chart:   Rs 120\n6) Noodles:       Rs 70\n7) Fries:         Rs 50\n8) Ice cream:     Rs 50\n9) Cold Drinks:   Rs 40\n";
+  cout<<"Enter the number display on the left of your Desired Thing\nIf you want Nothing Press n\n";
+  menu:
+  char cafe_input;
+  cin>>cafe_input;
+  int grand_total;
+  
+  switch(cafe_input){
+  	case'1':{
+  		grand_total=grand_total+100;
+  		string a="\t  Fresh Juice: Rs 100\n";
+  		detail+=a;
+		break;
+	  }
+	
+  	case'2':{
+  		grand_total=grand_total+50;
+		detail+="\t  Lays: Rs 50\n";
+		break;
+	  }
+	
+  	case'3':{
+  		grand_total=grand_total+100;
+  		detail=detail+"\t  Burger: Rs 100\n";
+		break;
+	  }
+	
+  	case'4':{
+  		grand_total=grand_total+150;
+  		detail=detail+"\t  Biryani: Rs 150\n";
+		break;
+	  }
+	
+  	case'5':{
+  		grand_total=grand_total+120;
+  		detail=detail+"\t  Chana Chart: Rs 120\n";
+		break;
+	  }
+	
+  	case'6':{
+  		grand_total=grand_total+70;
+  		detail=detail+"\t  Noodles: Rs 70\n";
+		break;
+	  }
+	
+  	case'7':{
+  		grand_total=grand_total+50;
+  		detail=detail+"\t  Fries: Rs 50\n";
+		break;
+	  }
+	
+  	case'8':{
+  		grand_total=grand_total+50;
+  		detail=detail+"\t  Icecream: Rs 50\n";
+		break;
+	  }
+	
+  	case'9':{
+  		grand_total=grand_total+40;
+  		detail=detail+"\t  Cold Drinks: Rs 40\n";
+		break;
+	  }
+	  
+	case'n':{
+  		goto total;
+		break;
+	  }
+	
+	
+  }
+  goto menu;
+  total:
+  cout<<endl;	
+  cout<<"Grand Total: "<<grand_total<<endl<<endl;
+  cout<<"If you want Bill Press y otherwise n"<<endl;
+  char bill_input;
+  cin>>bill_input;
+  if(bill_input=='y'){
+  	if(grand_total==0){
+  	cout<<"\n\t\t\t -------------------\n";
+  	cout<<"        \t\t\tNo Bill";
+  	cout<<"\n\t\t\t -------------------\n";
+  	cout<<"\n\t\t\t     ----------";
+	cout<<"\n\t\t\t     Thanks You";
+	cout<<"\n\t\t\t     ----------"<<endl;	
+	}
+	else{
+	cout<<"\n\n";
+	cout<<"\t-----------------------"<<endl;
+	cout<<"\t   Your Detailed Bill    "<<endl;
+  	cout<<"\t-----------------------\n";
+  	cout<<detail;
+  	cout<<"\t-----------------------\n";
+  	cout<<"\n\t\t\t ---------------------";
+	cout<<"\n\t\t\t |Thanks For Shopping|";
+	cout<<"\n\t\t\t ---------------------"<<endl;  
+	}
+  	
+  }
+  else{
+  	cout<<"\n -------------------"<<endl;  
+  	cout<<"\n Thanks For Shopping";
+  	cout<<"\n -------------------"<<endl;
+  }
+}
+void disply()
+{
+	system("cls");
+	cout<<"\n\n\t\t\t\t Trick Cross Game"<<endl;
+	cout<<"\n"<<endl;
+	cout<<"Player 1 [x]"<<endl;
+	cout<<"Player 2 [0]"<<endl;
+	cout<<"\t\t\t\t-----------------"<<endl;
+	cout<<"\t\t\t\t|    |     |    |"<<endl;
+	cout<<"\t\t\t\t| "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<" |"<<endl;
+	cout<<"\t\t\t\t|____|_____|____|"<<endl;
+	cout<<"\t\t\t\t|    |     |    |"<<endl;
+	cout<<"\t\t\t\t| "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<" |"<<endl;
+	cout<<"\t\t\t\t|____|_____|____|"<<endl;
+	cout<<"\t\t\t\t|    |     |    |"<<endl;
+	cout<<"\t\t\t\t| "<<board[2][0]<<"  |  "<<board[2][1]<<"  |  "<<board[2][2]<<" |"<<endl;
+	cout<<"\t\t\t\t|    |     |    |"<<endl;
+    cout<<"\t\t\t\t-----------------"<<endl;
+}
+void player_turn()
+{
+	int choice;
+	if(turn=='X')
+	cout<<"Player 1 [x] do:"<<endl;
+	if(turn=='0')
+	cout<<"Player 2 [0] do:"<<endl;
+	cin>>choice;
+	switch(choice)
+	{
+		case 1:
+			{
+				row=0;
+				col=0;
+				break;
+			}
+		case 2:
+			{
+				row=0;
+				col=1;
+				break;
+			}
+			case 3:
+			{
+				row=0;
+				col=2;
+				break;
+			}
+			case 4:
+			{
+				row=1;
+				col=0;
+				break;
+			}
+			case 5:
+			{
+				row=1;
+				col=1;
+				break;
+			}
+			case 6:
+			{
+				row=1;
+				col=2;
+				break;
+			}
+			case 7:
+			{
+				row=2;
+				col=0;
+				break;
+			}
+			case 8:
+			{
+				row=2;
+				col=1;
+				break;
+			}
+			case 9:
+			{
+				row=2;
+				col=2;
+				break;
+			}
+			default:
+			{
+				cout<<"Invalid key you press";
+				break;
+			}
+					
+	}
+	if(turn=='X' && board[row][col]!='X' && board[row][col]!='0')
+	{
+		board[row][col]='X';
+		turn='0';
+	}
+	else if(turn=='0' && board[row][col]!='X' && board[row][col]!='0')
+	{
+		board[row][col]='0';
+		turn='X';
+	}
+	else
+	{
+		cout<<"Box Already taken!\nPlease try again"<<endl;
+		player_turn();
+	}
+}
+bool game_end()
+{
+	//check win
+	for(int i=0;i<3;i++)
+	if(board[i][0]==board[i][1] && board[i][0]==board[i][2] || board[0][i]==board[1][i] && board[0][i]==board[2][i])
+	return false;
+	//for checking diagnals
+	if(board[0][0]==board[1][1] && board[0][0]==board[2][2]||board[0][2]==board[1][1] && board[0][2]==board[2][0])
+	return false;
+	//check if there is any box not filled
+	for(int i=0;i<3;i++)
+	for(int j=0;j<3;j++)
+	if(board[i][j]!='X' && board[i][j]!='0')
+	return true;
+	
+	draw=true;
+	return false;		
+}
+int rule(char p, char c){
+    if (p == c){
+        return 0;
+    }
+
+    if (p == 'r' && c == 'p'){
+        return -1;
+    }
+    else if (p == 's' && c == 'p'){
+        return 1;
+    }
+    else if (p == 'p' && c == 'r'){
+        return 1;
+    }
+    else if (p == 's' && c == 'r'){
+        return -1;
+    }
+    else if (p == 'r' && c == 's'){
+        return 1;
+    }
+    else if (p == 'p' && c == 's'){
+        return -1;
+    }
+}  
+ 
+ 
+ 
+    const double L_task=50.0;  
+	const double L_report=50.0;
+	const double CEP=100.00;
+	const double Mid=50.0;
+	const double Final=100.00;
+
+		
+
+
+int main(){
+	string detail="";
+	char class_input;
+	char robo;
+    char player;
+    char playmore;
+    cout<<"\t\t\tWelcome in University Management System\n\n"<<endl;
+    cout<<"Enter 1 for Teachers Mode\nEnter 2 for University Cafe\nEnter 3 for Gaming Zone\n"<<endl;
+    char input_modes;
+    char games_input;
+    cin>>input_modes;
+    switch(input_modes){
+    	case'1':{
+    		cout<<"\t\t\tWelcome in Teacher Portal\n"<<endl;
+        
+
+ {	
+	
+fstream project;
+project.open("BEME II B.txt",ios::out);
+if (project.is_open()){
+	project<<"Arslan 210558 :\n";
+	project<<"Usman 210532 :\n";
+	project<<"Kamran 210588 :\n";
+	project<<"Atif 210538 :\n";
+	project<<"Laila 210508 :\n\n";	
+project.close();	
+}
+	
+project.open(" MTS II-A.txt ",ios::out);
+if (project.is_open()){
+	project<<"Sharob 210558 :\n";
+	project<<"Tauheed 210343 :\n";
+	project<<"Ali 210523 :\n";
+	project<<"Aslam 210538 :\n";
+	project<<"Rihan 210548 :\n\n";	
+project.close();	
+}
+	
+project.open(" BEEP II-A.txt ",ios::out);
+if (project.is_open()){
+	project<<"Saman 210530 :\n";
+	project<<"Momina 210533 :\n";
+	project<<"Ahmed 210903 :\n";
+	project<<"Faizan 210128 :\n";
+	project<<"Rihan 215548 :\n";	
+project.close();	
+}
+	
+project.open(" BEBME A .txt ",ios::out);
+if (project.is_open()){
+	project<<"Ronaldo 210537 :\n";
+	project<<"Mane 210530 :\n";
+	project<<"Messy 210909 :\n";
+	project<<"Mabape 210123 :\n";
+	project<<"Salah 215549 :\n\n";	
+project.close();	
+}	
+    int  section=0;
+    classcall();
+    cin>>section;
+
+     switch(section)
+    {
+	case 1:
+		{
+		project.open("BEME II B.txt ",ios::in);
+		if(project.is_open() )
+		{
+			
+			string mec;
+			while (getline(project,mec))
+			{
+				
+				cout<<mec<<endl;
+					
+			}
+			project.close();
+		}
+	
+     int choice =0;
+     while(choice <1){
+     	display();
+     	
+     	int arry1[5];
+     	cout<<"Please enter the marks of Lab performence :\n";
+     	for(int i=0;i<5;i++){
+		
+     	cin>>arry1[i];
+        }
+        cout<<"The marks of the students are :\n";
+     	
+     	
+     	for(int i=0;i<5;i++){
+     		
+     		cout<<i+1<<" :"<<arry1[i]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+		
+     	int arry2[5];
+     	cout<<"Please enter the marks of Lab reports :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry2[j];
+        }
+        cout<<"The marks of the students are :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry2[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry3[5];
+     	cout<<"Please enter the marks of Mid term :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry3[j];
+        }
+        cout<<"The marks of the students in mid term :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry3[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry4[5];
+     	cout<<"Please enter the marks of Complex Engineering activity ;\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cin>>arry4[k];
+		 }
+     	
+     	cout<<"The marks of the students in CEP :\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cout<<" :"<<arry4[k]<<"\n";
+     		
+		 }
+		 cout<<"-----------------------------\n";  
+     	int arry5[5];
+     	cout<<"Please enter the marks of Final term :\n";
+     	for(int l=0;l<5;l++)
+     	{
+     		
+     		cin>>arry5[l];
+		 }
+		 cout<<"Marks obtained in final term :\n";
+		 for(int l=0;l<5;l++)
+		 {
+		 	
+		 cout<<l+1<<" :"<<arry5[l]<<"\n";
+		 }
+     	cout<<"-----------------------------\n";     	
+     	display();
+     	
+     	inputweightage();
+     	
+     	for(int i=0;i<5;i++){
+		 
+     	
+     	if((L_weight+R_weight+M_weight+CEP_weight+F_weight)<100){
+		Total_weight=(((arry1[i]/L_task)*(L_weight/100))+((arry2[i]/L_report)* ( R_weight/100)+((arry3[i]/Mid)*(M_weight/100))+
+	
+	
+	    ((arry4[i]/CEP)*(CEP_weight/100))  +  ((arry5[i]/Final)*(F_weight/100))));
+	
+	
+	    Total_weight=Total_weight*100; 
+        cout<<Total_weight<<"\n";
+	
+	    cout<<"Grades obtain by each student obtain :\n";
+	    cout<<"----------------------------------------";
+	
+	    for(int i=0;i<5;i++)
+	    {
+		if(Total_weight>90 && Total_weight<=100 )
+		{
+			
+			
+			cout<<"Grade will be the A :\n";
+		}
+		else if(Total_weight>=75 && Total_weight<90)
+		{
+			
+			cout<<"Grade will be the B :\n";
+		}
+		
+		
+		else if(Total_weight>=65 && Total_weight<75)
+		{
+			
+			cout<<"Grade will be the C :\n";
+		}
+		
+		
+		else if(Total_weight>=50 && Total_weight<65)
+		{
+			
+			cout<<"Grade will be the D :\n";
+		}
+		
+		else if(Total_weight<40)
+		{
+			
+			cout<<"Grade will be the F :\n";
+			
+			
+			}else if((L_weight+R_weight+M_weight+CEP_weight+F_weight)>100){
+				
+				cout<<"Error :";
+			}
+			
+			
+			project.open("Mechanical",ios::out);
+			if(project.is_open()){
+				project<<Total_weight<<"\n";
+				project.close();
+			}
+					
+		}
+			
+     	}
+	
+	    }    	
+     	choice++;
+     	
+     	
+     	
+     	
+     	
+     	
+     	
+	 }
+
+}
+
+	break;
+	case 2:
+		{
+			
+		project.open(" MTS II-A.txt  ",ios::in);
+		if(project.is_open() )
+		{
+			
+			string mec;
+			while (getline(project,mec))
+			{
+				
+				cout<<mec<<endl;
+					
+			}
+			project.close();
+		}
+	
+     int choice =0;
+     while(choice <1){
+     	display();
+     	
+     	int arry1[5];
+     	cout<<"Please enter the marks of Lab performence :\n";
+     	for(int i=0;i<5;i++){
+		
+     	cin>>arry1[i];
+        }
+        cout<<"The marks of the students are :\n";
+     	
+     	
+     	for(int i=0;i<5;i++){
+     		
+     		cout<<i+1<<" :"<<arry1[i]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+		
+     	int arry2[5];
+     	cout<<"Please enter the marks of Lab reports :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry2[j];
+        }
+        cout<<"The marks of the students are :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry2[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry3[5];
+     	cout<<"Please enter the marks of Mid term :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry3[j];
+        }
+        cout<<"The marks of the students in mid term :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry3[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry4[5];
+     	cout<<"Please enter the marks of Complex Engineering activity ;\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cin>>arry4[k];
+		 }
+     	
+     	cout<<"The marks of the students in CEP :\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cout<<" :"<<arry4[k]<<"\n";
+     		
+		 }
+		 cout<<"-----------------------------\n";  
+     	int arry5[5];
+     	cout<<"Please enter the marks of Final term :\n";
+     	for(int l=0;l<5;l++)
+     	{
+     		
+     		cin>>arry5[l];
+		 }
+		 cout<<"Marks obtained in final term :\n";
+		 for(int l=0;l<5;l++)
+		 {
+		 	
+		 cout<<l+1<<" :"<<arry5[l]<<"\n";
+		 }
+     	cout<<"-----------------------------\n";     	
+     	display();
+     	
+     	inputweightage();
+     	
+     	for(int i=0;i<5;i++){
+		 
+     	
+     	if((L_weight+R_weight+M_weight+CEP_weight+F_weight)<100){
+		Total_weight=(((arry1[i]/L_task)*(L_weight/100))+((arry2[i]/L_report)* ( R_weight/100)+((arry3[i]/Mid)*(M_weight/100))+
+	
+	
+	    ((arry4[i]/CEP)*(CEP_weight/100))  +  ((arry5[i]/Final)*(F_weight/100))));
+	
+	
+	    Total_weight=Total_weight*100; 
+
+	     cout<<Total_weight<<"\n";
+	    cout<<"Grades obtain by each student obtain :\n";
+	    cout<<"----------------------------------------";
+	
+	    for(int i=0;i<5;i++)
+	    {
+		if(Total_weight>90 && Total_weight<=100 )
+		{
+			
+			
+			cout<<"Grade will be the A :\n";
+		}
+		else if(Total_weight>=75 && Total_weight<90)
+		{
+			
+			cout<<"Grade will be the B :\n";
+		}
+		
+		
+		else if(Total_weight>=65 && Total_weight<75)
+		{
+			
+			cout<<"Grade will be the C :\n";
+		}
+		
+		
+		else if(Total_weight>=50 && Total_weight<65)
+		{
+			
+			cout<<"Grade will be the D :\n";
+		}
+		
+		else if(Total_weight<40)
+		{
+			
+			cout<<"Grade will be the F :\n";
+			
+			
+			}else if((L_weight+R_weight+M_weight+CEP_weight+F_weight)>100){
+				
+				cout<<"Error :";
+			}
+			
+			
+			project.open("Mechanical",ios::out);
+			if(project.is_open()){
+				project<<Total_weight<<"\n";
+				project.close();
+			}
+					
+		}
+			
+     	}
+	
+	    }    	
+     	choice++;
+     	
+     	
+     	
+     	
+     	
+     	
+     	
+	 }
+			
+			
+		}
+	
+	break ;
+	case 3:
+		
+		{
+		project.open(" BEEP II-A.txt ",ios::in);
+		if(project.is_open() )
+		{
+			
+			string mec;
+			while (getline(project,mec))
+			{
+				
+				cout<<mec<<endl;
+					
+			}
+			project.close();
+		}
+	
+     int choice =0;
+     while(choice <1){
+     	display();
+     	
+     	int arry1[5];
+     	cout<<"Please enter the marks of Lab performence :\n";
+     	for(int i=0;i<5;i++){
+		
+     	cin>>arry1[i];
+        }
+        cout<<"The marks of the students are :\n";
+     	
+     	
+     	for(int i=0;i<5;i++){
+     		
+     		cout<<i+1<<" :"<<arry1[i]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+		
+     	int arry2[5];
+     	cout<<"Please enter the marks of Lab reports :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry2[j];
+        }
+        cout<<"The marks of the students are :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry2[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry3[5];
+     	cout<<"Please enter the marks of Mid term :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry3[j];
+        }
+        cout<<"The marks of the students in mid term :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry3[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry4[5];
+     	cout<<"Please enter the marks of Complex Engineering activity ;\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cin>>arry4[k];
+		 }
+     	
+     	cout<<"The marks of the students in CEP :\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cout<<" :"<<arry4[k]<<"\n";
+     		
+		 }
+		 cout<<"-----------------------------\n";  
+     	int arry5[5];
+     	cout<<"Please enter the marks of Final term :\n";
+     	for(int l=0;l<5;l++)
+     	{
+     		
+     		cin>>arry5[l];
+		 }
+		 cout<<"Marks obtained in final term :\n";
+		 for(int l=0;l<5;l++)
+		 {
+		 	
+		 cout<<l+1<<" :"<<arry5[l]<<"\n";
+		 }
+     	cout<<"-----------------------------\n";     	
+     	display();
+     	
+     	inputweightage();
+     	
+     	for(int i=0;i<5;i++){
+		 
+     	
+     	if((L_weight+R_weight+M_weight+CEP_weight+F_weight)<100){
+		Total_weight=(((arry1[i]/L_task)*(L_weight/100))+((arry2[i]/L_report)* ( R_weight/100)+((arry3[i]/Mid)*(M_weight/100))+
+	
+	
+	    ((arry4[i]/CEP)*(CEP_weight/100))  +  ((arry5[i]/Final)*(F_weight/100))));
+	
+	
+	    Total_weight=Total_weight*100; 
+
+	     cout<<Total_weight<<"\n";
+	    cout<<"Grades obtain by each student obtain :\n";
+	    cout<<"----------------------------------------";
+	
+	    for(int i=0;i<5;i++)
+	    {
+		if(Total_weight>90 && Total_weight<=100 )
+		{
+			
+			
+			cout<<"Grade will be the A :\n";
+		}
+		else if(Total_weight>=75 && Total_weight<90)
+		{
+			
+			cout<<"Grade will be the B :\n";
+		}
+		
+		
+		else if(Total_weight>=65 && Total_weight<75)
+		{
+			
+			cout<<"Grade will be the C :\n";
+		}
+		
+		
+		else if(Total_weight>=50 && Total_weight<65)
+		{
+			
+			cout<<"Grade will be the D :\n";
+		}
+		
+		else if(Total_weight<40)
+		{
+			
+			cout<<"Grade will be the F :\n";
+			
+			
+			}else if((L_weight+R_weight+M_weight+CEP_weight+F_weight)>100){
+				
+				cout<<"Error :";
+			}
+			
+			
+			project.open("Mechanical",ios::out);
+			if(project.is_open()){
+				project<<Total_weight<<"\n";
+				project.close();
+			}
+					
+		}
+			
+     	}
+	
+	    }    	
+     	choice++;
+     	
+     	
+     	
+     	
+     	
+     	
+     	
+	 }
+
+}
+
+	break;
+ case 4:
+		
+		{
+		project.open(" BEBME A .txt ",ios::in);
+		if(project.is_open() )
+		{
+			
+			string mec;
+			while (getline(project,mec))
+			{
+				
+				cout<<mec<<endl;
+					
+			}
+			project.close();
+		}
+	
+     int choice =0;
+     while(choice <1){
+     	display();
+     	
+     	int arry1[5];
+     	cout<<"Please enter the marks of Lab performence :\n";
+     	for(int i=0;i<5;i++){
+		
+     	cin>>arry1[i];
+        }
+        cout<<"The marks of the students are :\n";
+     	
+     	
+     	for(int i=0;i<5;i++){
+     		
+     		cout<<i+1<<" :"<<arry1[i]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+		
+     	int arry2[5];
+     	cout<<"Please enter the marks of Lab reports :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry2[j];
+        }
+        cout<<"The marks of the students are :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry2[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry3[5];
+     	cout<<"Please enter the marks of Mid term :\n";
+     	for(int j = 0;j<5;j++)
+     	{
+     	cin>>arry3[j];
+        }
+        cout<<"The marks of the students in mid term :\n";
+        for(int j=0;j<5;j++){
+        	
+        	cout<<j+1<<" :"<<arry3[j]<<"\n";
+		}
+		cout<<"-----------------------------\n";  
+     	int arry4[5];
+     	cout<<"Please enter the marks of Complex Engineering activity ;\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cin>>arry4[k];
+		 }
+     	
+     	cout<<"The marks of the students in CEP :\n";
+     	for(int k=0;k<5;k++)
+     	{
+     		cout<<" :"<<arry4[k]<<"\n";
+     		
+		 }
+		 cout<<"-----------------------------\n";  
+     	int arry5[5];
+     	cout<<"Please enter the marks of Final term :\n";
+     	for(int l=0;l<5;l++)
+     	{
+     		
+     		cin>>arry5[l];
+		 }
+		 cout<<"Marks obtained in final term :\n";
+		 for(int l=0;l<5;l++)
+		 {
+		 	
+		 cout<<l+1<<" :"<<arry5[l]<<"\n";
+		 }
+     	cout<<"-----------------------------\n";     	
+     	display();
+     	
+     	inputweightage();
+     	
+     	for(int i=0;i<5;i++){
+		 
+     	
+     	if((L_weight+R_weight+M_weight+CEP_weight+F_weight)<100){
+		Total_weight=(((arry1[i]/L_task)*(L_weight/100))+((arry2[i]/L_report)* ( R_weight/100)+((arry3[i]/Mid)*(M_weight/100))+
+	
+	
+	    ((arry4[i]/CEP)*(CEP_weight/100))  +  ((arry5[i]/Final)*(F_weight/100))));
+	
+	
+	    Total_weight=Total_weight*100; 
+
+	
+	    cout<<"Grades obtain by each student obtain :\n";
+	    cout<<"----------------------------------------";
+	
+	    for(int i=0;i<5;i++)
+	    {
+		if(Total_weight>90 && Total_weight<=100 )
+		{
+			
+			
+			cout<<"Grade will be the A :\n";
+		}
+		else if(Total_weight>=75 && Total_weight<90)
+		{
+			
+			cout<<"Grade will be the B :\n";
+		}
+		
+		
+		else if(Total_weight>=65 && Total_weight<75)
+		{
+			
+			cout<<"Grade will be the C :\n";
+		}
+		
+		
+		else if(Total_weight>=50 && Total_weight<65)
+		{
+			
+			cout<<"Grade will be the D :\n";
+		}
+		
+		else if(Total_weight<40)
+		{
+			
+			cout<<"Grade will be the F :\n";
+			
+			
+			}else if((L_weight+R_weight+M_weight+CEP_weight+F_weight)>100){
+				
+				cout<<"Error :";
+			}
+			
+			
+			project.open("Mechanical",ios::out);
+			if(project.is_open()){
+				project<<Total_weight<<"\n";
+				project.close();
+			}
+					
+		}
+			
+     	}
+	
+	    }    	
+     	choice++;
+     	
+     	
+     	
+     	
+     	
+     	
+     	
+	 }
+
+}
+
+	break;
+     
+     
+	
+
+    }
+    
+    
+		return 0;
+	}
+
+
+
+			break;
+		}
+		case'2':{
+			cout<<"\t\t\tWelcome in University Cafe\n"<<endl;
+			cafe(detail);
+			break;
+		}
+		case'3':{
+			cout<<"\t\t\tWelcome in Gaming Zone"<<endl<<"\n\tTic Tak Toe\n\tRock, Paper and Scissors Game\n"<<endl;
+			cout<<"Enter 1 For Tic Tak Toe"<<endl<<"Enter 2 For Rock, Paper and Scissors Game\n"<<endl;
+			cin>>games_input;
+			if(games_input=='1'){
+					while(game_end())
+					{
+						disply();
+						player_turn();
+						disply();
+						game_end();
+					}
+				if(turn=='X'&& draw==false)
+				cout<<"Player 2 [0] Wins\nCongradulations!"<<endl;
+				else if(turn=='0'&& draw==false)
+				cout<<"Player 1 [X] Wins\nCongradulations!"<<endl;
+				else
+				cout<<"!!! Game Draw !!!\n";
+			}
+			else{
+					cout << "\t\t\t\t";
+    				for(int i = 0; i < 50; i++){
+        				cout << "-";
+    				}
+    				cout << endl;
+    				cout << "\t\t\t\t";
+    				cout << "\t    Rock, Paper and Scissors Game" << endl;
+    				cout << "\t\t\t\t";
+    				for(int i = 0; i < 50; i++){
+        				cout << "-";
+    				}
+    				cout << endl;
+    				cout << "\t\t\t\t";
+    				cout << "\t Press: " << endl;
+    				cout << "\t\t\t\t";
+    				cout << "\t\t r for Rock" << endl << "\t\t\t\t" << "\t\t p for Paper" << endl << "\t\t\t\t" << "\t\t s for scissor" << endl << "\t\t\t\t"<< endl << endl;
+    				cout << "\t\t\t\t";
+    				for(int i = 0; i < 50; i++){
+        				cout << "-";
+    				}
+    				cout << endl;
+    				do{
+        				int number = 0;
+        				srand(time(0));        // initialized time to 0
+        				number = rand() % 100; // will choose a number in range 0 - 99
+        				// r - for rock
+        				// p - for paper
+        				// s - for scissors
+        				if (number < 33)
+        				{
+            				robo = 'r';
+        				}
+        				else if (number > 66)
+        				{
+            				robo = 's';
+        				}
+        				else
+        				{
+            				robo = 'p';
+        				}
+   	 				    
+				        cout << "\t\t\t\t";
+ 				        cout << "Enter your choice: ";
+        				cin >> player;
+        				int result = rule(player, robo);
+        				if(result == 1){
+            				cout << "\t\t\t\t";
+            				cout << "You won! Hurray" << endl;
+        				}
+        				else if(result == -1){
+            				cout << "\t\t\t\t";
+            				cout << "You lose! Bad Luck" << endl;
+        				}
+        				else{
+            				cout << "\t\t\t\t";
+            				cout << "Woah! That's Tie!" << endl;
+        				}
+        					cout << "\t\t\t\t";
+        					cout << "Press 'n' to exit! Press AnyKey to Play Game ";
+        					cin >> playmore;
+        					cout << "\t\t\t\t";
+      	  					for(int i = 0; i < 50; i++){
+            					cout << "-";
+					        }
+        					cout << endl;
+  					    }while(playmore != 'n');
+
+    					return 0;
+						}
+			break;
+		}
+	}
+}
